@@ -1,67 +1,69 @@
-setupLinks = ->
-  $('#tasks a').attr "target", "_blank"
+$(document).on 'ready page:load', ->
+  setupLinks = ->
+    $('#tasks a').attr "target", "_blank"
 
-divAtIndex = (index) ->
-  $ taskItemsInView()[index]
+  taskTitle = (taskItem) ->
+    $(taskItem).find("h4").html()
 
-setStatus = (div, done) ->
-  div.toggleClass "glyphicon-ok", done
-  div.toggleClass "glyphicon-minus", not done
+  updateTitle = (taskDiv, title) ->
+    $(taskDiv).find('#task_title').val(title)
 
-statusDiv = (taskDiv) ->
-  taskDiv.find ".glyphicon-minus, .glyphicon-ok"
+  taskBody = (taskDiv) ->
+    $(taskDiv).find("p").html()
 
-cachedtaskItems = ->
-  localStorage["taskItems"] = JSON.stringify([])  unless localStorage["taskItems"]
-  JSON.parse localStorage["taskItems"]
+  updateBody = (taskDiv, body) ->
+    $(taskDiv).find('#task_body').val(body)
 
-savetaskItems = (taskItems) ->
-  localStorage["taskItems"] = JSON.stringify(taskItems)
+  taskId = (taskDiv) ->
+    $(taskDiv).find('#task_id').val()
 
-taskDate = (taskItem) ->
-  $(taskItem).find("h4").html()
+  updateId = (taskDiv, id) ->
+    $(taskDiv).find('#task_id').val(id)
 
-taskBody = (taskDiv) ->
-  $(taskDiv).find("p").html()
+  updateDiv = (taskDiv, task) ->
+    updateId taskDiv, task.id
+    updateTitle taskDiv, task.title
+    updateBody taskDiv, task.body
 
-taskIndex = (taskDiv) ->
-  taskItemsInView().index taskDiv
+  taskFromDiv = (taskDiv) ->
+    {
+      id: taskId(taskDiv)
+      title: taskTitle(taskDiv)
+      body: taskBody(taskDiv)
+    }
 
-taskItemsInView = ->
-  $ "#tasks .task-item"
+  tasksInView = ->
+    $('#tasks .task')
 
-taskFromDiv = (taskDiv) ->
-  title: taskTitle(taskDiv)
-  body: taskBody(taskDiv)
+  saveTask = (taskDiv) ->
+    task = taskFromDiv taskDiv
+    $.ajax
+      url: 'tasks/update',
+      data: { task: task },
+      type: 'PUT',
+      success: (data, status, xhr) ->
+        task.id = data.id
+        updateDiv taskDiv, task
 
-$(document).on "click", ".editable:not(a)", (event) ->
-  $(this).toggleClass "editable", false
-  $(this).html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
-  $(this).find("input").focus()
+  $(document).on "click", "#add-task", (event) ->
+    $("#tasks").append $("#new-task-form").html()
+    taskDiv = tasksInView().last()
+    saveTask taskDiv
 
-$(document).on "blur", "input.task-form-item", (event) ->
-  parentSection = $(this).parent("p, h4")
-  parentSection.toggleClass "editable", true
-  taskDiv = parentSection.parent()
-  $(this).replaceWith $(this).val().trim()
-  taskItems = cachedtaskItems()
-  index = taskIndex(taskDiv)
-  if index is taskItems.length
-    taskItems.push taskFromDiv(taskDiv)
-  else
-    taskItems[index] = taskFromDiv(taskDiv)
-  savetaskItems taskItems
+  $(document).on "click", ".editable:not(a)", (event) ->
+    $(this).toggleClass "editable", false
+    $(this).html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
+    $(this).find("input").focus()
 
-$(document).on "click", "#add-task", (event) ->
-  $("#tasks").append $("#new-task-form").html()
+  $(document).on "blur", "input.task-form-item", (event) ->
+    parentSection = $(this).parent("p, h4")
+    parentSection.toggleClass "editable", true
+    taskDiv = parentSection.parent()
+    $(this).replaceWith $(this).val().trim()
+    saveTask taskDiv
 
-$(document).on "click", "#remove-task", (event) ->
-  taskDiv = $(this).parent()
-  index = taskIndex(taskDiv)
-  taskItems = cachedtaskItems()
-  taskItems.splice index, 1
-  savetaskItems taskItems
-  taskDiv.remove()
+  $(document).on "click", "#remove-task", (event) ->
+    taskDiv = $(this).parent()
+    taskDiv.remove()
 
-$(document).on "ready", ->
   setupLinks()

@@ -10,13 +10,13 @@
 
     <ul class='list-group' id='tasks'>
       <% tasks.each do |task| %>
-        <div class='list-group-item'>
-          <%= button_to nil, class: 'btn btn-xs pull-right' do %>
+        <div class='list-group-item task'>
+          <%= button_tag nil, class: 'btn btn-xs pull-right', id: 'remove-task' do %>
             <span class='glyphicon glyphicon-remove'></span>
           <% end %>
           <%= hidden_field :task, :id, value: task.id %>
-          <h4 class="list-group-item-heading"><%= task.title %></h4>
-          <p class='list-group-item-text'><%= task.body.html_safe %></p>
+          <h4 class='list-group-item-heading editable' id='task_title'><%= task.title %></h4>
+          <p class='list-group-item-text editable' id='task_body'><%= task.body.html_safe %></p>
         </div>
       <% end %>
     </ul>

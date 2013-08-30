@@ -45,6 +45,13 @@ $(document).on 'ready page:load', ->
         task.id = data.id
         updateDiv taskDiv, task
 
+  destroyTask = (taskDiv) ->
+    task = taskFromDiv taskDiv
+    $.ajax
+      url: 'tasks/destroy',
+      data: { task: task },
+      type: 'DELETE'
+
   $(document).on "click", "#add-task", (event) ->
     $("#tasks").append $("#new-task-form").html()
     taskDiv = tasksInView().last()
@@ -59,11 +66,13 @@ $(document).on 'ready page:load', ->
     parentSection = $(this).parent("p, h4")
     parentSection.toggleClass "editable", true
     taskDiv = parentSection.parent()
-    $(this).replaceWith $(this).val().trim()
+    text = $(this).val().trim()
+    $(this).replaceWith text
     saveTask taskDiv
 
   $(document).on "click", "#remove-task", (event) ->
     taskDiv = $(this).parent()
     taskDiv.remove()
+    destroyTask taskDiv
 
   setupLinks()

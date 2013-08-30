@@ -1,2 +1,83 @@
-<h1>Dashboard#show</h1>
-<p>Find me in app/views/dashboard/show.html.erb</p>
+<div class='hidden' id='new-todo-item-form'>
+  <div class='list-group-item todo-item'>
+    <button class='btn btn-xs pull-right' id='toggle-status'>
+      <span class='glyphicon glyphicon-minus'></span>
+    </button>
+    <button class='btn btn-xs pull-right' id='remove-todo'>
+      <span class='glyphicon glyphicon-remove'></span>
+    </button>
+    <button class='btn btn-xs pull-right' id='move-up-todo'>
+      <span class='glyphicon glyphicon-arrow-up'></span>
+    </button>
+    <button class='btn btn-xs pull-right' id='move-down-todo'>
+      <span class='glyphicon glyphicon-arrow-down'></span>
+    </button>
+    <h4 class="list-group-item-heading"><input type='text' placeholder='Date' class='form-control todo-form-item'></h4>
+    <p class='list-group-item-text'><input type='text' placeholder='To Do' class='form-control todo-form-item'></p>
+  </div>
+</div>
+
+<div class='container'>
+  <h1 class='page-title'>Utility<small> Andrew Kofink - <a href='http://getbootstrap.com/css/', target='_blank'>Bootstrap</a></small></h1>
+
+  <div class='row'>
+    <div class='col-md-3'>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>Courses<small> Fall 2013</small></h3>
+        </div>
+
+        <ul class='list-group'>
+          <a href='https://wolfware.ncsu.edu/', target='_blank' class='list-group-item'>My Courses - Wolfware</a>
+          <a href='http://courses.ncsu.edu/ece301/lec/001/', target='_blank' class='list-group-item'>ECE 301</a>
+          <a href='https://moodle1314-courses.wolfware.ncsu.edu/course/view.php?id=2872', target='_blank' class='list-group-item'>CSC 246</a>
+          <a href='https://moodle1314-courses.wolfware.ncsu.edu/pluginfile.php/422185/mod_resource/content/0/readings.pdf',
+            target='_blank' class='list-group-item'>CSC 246 Reading Schedule</a>
+          <a href='https://moodle1314-courses.wolfware.ncsu.edu/course/view.php?id=2799', target='_blank', class='list-group-item'>ECE 302</a>
+          <a href='https://moodle1314-courses.wolfware.ncsu.edu/pluginfile.php/361773/mod_resource/content/2/Lecture_HW_schedule.pdf',
+            target='_blank' class='list-group-item'>ECE 302 Lecture Schedule</a>
+          <a href='https://moodle1314-courses.wolfware.ncsu.edu/course/view.php?id=3235', target='_blank', class='list-group-item'>ECE 302 Lab</a>
+          <a href='http://www.csc.ncsu.edu/faculty/efg/517/f13/', target='_blank', class='list-group-item'>CSC 517</a>
+        </ul>
+      </div>
+
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3
+            class='panel-title'>Periodic Table</h3>
+        </div>
+
+        <div
+          class='container'>
+          <%= image_tag 'periodic_table.png', width: '220px' %>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-md-4 todo-col'>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>ToDo
+            <button type='button' class='btn btn-xs pull-right' id='add-todo'>
+              <span class="glyphicon glyphicon-plus"></span>
+          </button></h3>
+        </div>
+
+        <ul class='list-group' id='todo-items'>
+        </ul>
+      </div>
+    </div>
+
+    <div class='col-md-5'>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>Laplace Transforms</h3>
+        </div>
+
+        <div class='container'>
+          <%= image_tag 'laplace_transforms.png' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,21 +1,4 @@
-<div class='hidden' id='new-todo-item-form'>
-  <div class='list-group-item todo-item'>
-    <button class='btn btn-xs pull-right' id='toggle-status'>
-      <span class='glyphicon glyphicon-minus'></span>
-    </button>
-    <button class='btn btn-xs pull-right' id='remove-todo'>
-      <span class='glyphicon glyphicon-remove'></span>
-    </button>
-    <button class='btn btn-xs pull-right' id='move-up-todo'>
-      <span class='glyphicon glyphicon-arrow-up'></span>
-    </button>
-    <button class='btn btn-xs pull-right' id='move-down-todo'>
-      <span class='glyphicon glyphicon-arrow-down'></span>
-    </button>
-    <h4 class="list-group-item-heading"><input type='text' placeholder='Date' class='form-control todo-form-item'></h4>
-    <p class='list-group-item-text'><input type='text' placeholder='To Do' class='form-control todo-form-item'></p>
-  </div>
-</div>
+<%= render 'tasks/form' %>
 
 <div class='container'>
   <h1 class='page-title'>Utility<small> Andrew Kofink - <a href='http://getbootstrap.com/css/', target='_blank'>Bootstrap</a></small></h1>
@@ -54,19 +37,7 @@
       </div>
     </div>
 
-    <div class='col-md-4 todo-col'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h3 class='panel-title'>ToDo
-            <button type='button' class='btn btn-xs pull-right' id='add-todo'>
-              <span class="glyphicon glyphicon-plus"></span>
-          </button></h3>
-        </div>
-
-        <ul class='list-group' id='todo-items'>
-        </ul>
-      </div>
-    </div>
+    <%= render 'tasks/all', tasks: @dashboard.tasks %>
 
     <div class='col-md-5'>
       <div class='panel panel-default'>

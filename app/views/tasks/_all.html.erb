@@ -1,0 +1,24 @@
+<div class='col-md-4'>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h3 class='panel-title'>Tasks
+        <button type='button' class='btn btn-xs pull-right' id='add-task'>
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </h3>
+    </div>
+
+    <ul class='list-group' id='tasks'>
+      <% tasks.each do |task| %>
+        <div class='list-group-item'>
+          <%= button_to nil, class: 'btn btn-xs pull-right' do %>
+            <span class='glyphicon glyphicon-remove'></span>
+          <% end %>
+          <%= hidden_field :task, :id, value: task.id %>
+          <h4 class="list-group-item-heading"><%= task.title %></h4>
+          <p class='list-group-item-text'><%= task.body.html_safe %></p>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>

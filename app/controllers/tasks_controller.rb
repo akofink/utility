@@ -15,9 +15,6 @@ class TasksController < ApplicationController
     Task.find_by(id: params[:task][:id]).try :destroy
   end
 
-  def index
-  end
-
   private
 
   def task_params

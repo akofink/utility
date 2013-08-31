@@ -17,7 +17,7 @@
           <%= hidden_field :task, :id, value: task.id %>
           <h4 class='list-group-item-heading'>
             <span class='editable' id='task_due'>
-              <%= task.due.try(:strftime, "%Y-%m-%d") || 'task_due' %>
+              <%= task.due.try(:strftime, "%Y-%m-%d %a") || 'task_due' %>
             </span>
             -
             <span class='editable' id='task_title'>

@@ -37,7 +37,9 @@
       </div>
     </div>
 
-    <%= render 'tasks/all', tasks: @dashboard.tasks %>
+    <div id='tasks_partial'>
+      <%= render 'tasks/all', tasks: @dashboard.tasks %>
+    </div>
 
     <div class='col-md-5'>
       <div class='panel panel-default'>

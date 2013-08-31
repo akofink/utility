@@ -2,14 +2,20 @@ $(document).on 'ready page:load', ->
   setupLinks = ->
     $('#tasks a').attr "target", "_blank"
 
+  taskDue = (taskDiv) ->
+    $(taskDiv).find("#task_due").html()
+
+  updateDue = (taskDiv, due) ->
+    $(taskDiv).find('#task_due').val(due)
+
   taskTitle = (taskItem) ->
-    $(taskItem).find("h4").html()
+    $(taskItem).find("#task_title").html().trim()
 
   updateTitle = (taskDiv, title) ->
     $(taskDiv).find('#task_title').val(title)
 
   taskBody = (taskDiv) ->
-    $(taskDiv).find("p").html()
+    $(taskDiv).find("#task_body").html().trim()
 
   updateBody = (taskDiv, body) ->
     $(taskDiv).find('#task_body').val(body)
@@ -28,6 +34,7 @@ $(document).on 'ready page:load', ->
   taskFromDiv = (taskDiv) ->
     {
       id: taskId(taskDiv)
+      due: taskDue(taskDiv)
       title: taskTitle(taskDiv)
       body: taskBody(taskDiv)
     }
@@ -37,6 +44,7 @@ $(document).on 'ready page:load', ->
 
   saveTask = (taskDiv) ->
     task = taskFromDiv taskDiv
+    console.log JSON.stringify(task)
     $.ajax
       url: 'tasks/update',
       data: { task: task },
@@ -44,6 +52,7 @@ $(document).on 'ready page:load', ->
       success: (data, status, xhr) ->
         task.id = data.id
         updateDiv taskDiv, task
+        reloadTasks()
 
   destroyTask = (taskDiv) ->
     task = taskFromDiv taskDiv
@@ -52,21 +61,30 @@ $(document).on 'ready page:load', ->
       data: { task: task },
       type: 'DELETE'
 
+  reloadTasks = ->
+    $.ajax
+      url: 'dashboard/tasks',
+      success: (data, status, xhr) ->
+        $('#tasks_partial').html data
+
+
   $(document).on "click", "#add-task", (event) ->
     $("#tasks").append $("#new-task-form").html()
     taskDiv = tasksInView().last()
     saveTask taskDiv
 
   $(document).on "click", ".editable:not(a)", (event) ->
-    $(this).toggleClass "editable", false
-    $(this).html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
-    $(this).find("input").focus()
+    element = $(this).closest('#task_due, #task_title, #task_body')
+    element.toggleClass "editable", false
+    element.html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
+    element.find("input").focus()
 
   $(document).on "blur", "input.task-form-item", (event) ->
-    parentSection = $(this).parent("p, h4")
-    parentSection.toggleClass "editable", true
-    taskDiv = parentSection.parent()
+    $(this).closest('span').toggleClass "editable", true
+    taskDiv = $(this).closest('.task')
     text = $(this).val().trim()
+    if text == ''
+      text = $(this).closest('span').attr 'id'
     $(this).replaceWith text
     saveTask taskDiv
 

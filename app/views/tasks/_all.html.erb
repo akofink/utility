@@ -15,8 +15,20 @@
             <span class='glyphicon glyphicon-remove'></span>
           <% end %>
           <%= hidden_field :task, :id, value: task.id %>
-          <h4 class='list-group-item-heading editable' id='task_title'><%= task.title %></h4>
-          <p class='list-group-item-text editable' id='task_body'><%= task.body.html_safe %></p>
+          <h4 class='list-group-item-heading'>
+            <span class='editable' id='task_due'>
+              <%= task.due.try(:strftime, "%Y-%m-%d") || 'task_due' %>
+            </span>
+            -
+            <span class='editable' id='task_title'>
+              <%= task.title.html_safe || 'task_title' %>
+            </span>
+          </h4>
+          <p class='list-group-item-text'>
+            <span class='editable' id='task_body'>
+              <%= task.body.html_safe || 'task_body' %>
+            </span>
+          </p>
         </div>
       <% end %>
     </ul>

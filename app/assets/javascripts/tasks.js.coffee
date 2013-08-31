@@ -44,7 +44,6 @@ $(document).on 'ready page:load', ->
 
   saveTask = (taskDiv) ->
     task = taskFromDiv taskDiv
-    console.log JSON.stringify(task)
     $.ajax
       url: 'tasks/update',
       data: { task: task },

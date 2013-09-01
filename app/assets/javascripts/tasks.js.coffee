@@ -88,6 +88,9 @@ $(document).on 'ready page:load', ->
     element.html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
     element.find("input").focus()
 
+  $(document).on 'click', 'a', (event) ->
+    event.preventDefault() if event.altKey
+
   $(document).on "blur", "input.task-form-item", (event) ->
     $(this).closest('span').toggleClass "editable", true
     taskDiv = $(this).closest('.task')

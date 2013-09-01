@@ -11,8 +11,11 @@
     <ul class='list-group' id='tasks'>
       <% tasks.each do |task| %>
         <div class='list-group-item task'>
-          <%= button_tag nil, class: 'btn btn-xs pull-right', id: 'remove-task' do %>
+          <%= button_tag nil, class: 'btn btn-xs pull-right', id: 'remove_task' do %>
             <span class='glyphicon glyphicon-remove'></span>
+          <% end %>
+          <%= button_tag nil, class: 'btn btn-xs pull-right', id: 'task_status' do %>
+            <span class='glyphicon <%= task.status ? 'glyphicon-ok' : 'glyphicon-minus' %>'></span>
           <% end %>
           <%= hidden_field :task, :id, value: task.id %>
           <h4 class='list-group-item-heading'>

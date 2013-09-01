@@ -8,6 +8,13 @@ $(document).on 'ready page:load', ->
   updateDue = (taskDiv, due) ->
     $(taskDiv).find('#task_due').val(due)
 
+  taskStatus = (taskDiv) ->
+    $(taskDiv).find("#task_status").find('span').hasClass('glyphicon-ok')
+
+  updateStatus = (taskDiv, due) ->
+    $(taskDiv).find('#task_status span').toggleClass('glyphicon-ok', due)
+    $(taskDiv).find('#task_status span').toggleClass('glyphicon-minus', !due)
+
   taskTitle = (taskItem) ->
     $(taskItem).find("#task_title").html().trim()
 
@@ -28,6 +35,8 @@ $(document).on 'ready page:load', ->
 
   updateDiv = (taskDiv, task) ->
     updateId taskDiv, task.id
+    updateDue taskDiv, task.due
+    updateStatus taskDiv, task.status
     updateTitle taskDiv, task.title
     updateBody taskDiv, task.body
 
@@ -35,6 +44,7 @@ $(document).on 'ready page:load', ->
     {
       id: taskId(taskDiv)
       due: taskDue(taskDiv)
+      status: taskStatus(taskDiv)
       title: taskTitle(taskDiv)
       body: taskBody(taskDiv)
     }
@@ -87,9 +97,14 @@ $(document).on 'ready page:load', ->
     $(this).replaceWith text
     saveTask taskDiv
 
-  $(document).on "click", "#remove-task", (event) ->
+  $(document).on "click", "#remove_task", (event) ->
     taskDiv = $(this).parent()
     taskDiv.remove()
     destroyTask taskDiv
+
+  $(document).on "click", "#task_status", (event) ->
+    taskDiv = $(this).parent()
+    updateStatus taskDiv, !taskStatus(taskDiv)
+    saveTask taskDiv
 
   setupLinks()

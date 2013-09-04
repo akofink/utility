@@ -82,14 +82,14 @@ $(document).on 'ready page:load', ->
     taskDiv = tasksInView().last()
     saveTask taskDiv
 
-  $(document).on "click", ".editable:not(a)", (event) ->
-    element = $(this).closest('#task_due, #task_title, #task_body')
-    element.toggleClass "editable", false
-    element.html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
-    element.find("input").focus()
-
-  $(document).on 'click', 'a', (event) ->
-    event.preventDefault() if event.altKey
+  $(document).on "click", ".editable", (event) ->
+    console.log event
+    if event.shiftKey
+      event.preventDefault()
+      element = $(this).closest('#task_due, #task_title, #task_body')
+      element.toggleClass "editable", false
+      element.html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
+      element.find("input").focus()
 
   $(document).on "blur", "input.task-form-item", (event) ->
     $(this).closest('span').toggleClass "editable", true

@@ -1,5 +1,3 @@
-<%= render 'tasks/form' %>
-
 <div class='container'>
   <h1 class='page-title'>Utility<small> Andrew Kofink - <a href='http://getbootstrap.com/css/', target='_blank'>Bootstrap</a></small></h1>
 
@@ -38,6 +36,8 @@
     </div>
 
     <div id='tasks_partial'>
+      <%= render 'tasks/form' %>
+
       <%= render 'tasks/all', tasks: @dashboard.tasks %>
     </div>
 

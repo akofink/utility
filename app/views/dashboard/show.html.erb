@@ -1,56 +1,17 @@
-<div class='container'>
-  <h1 class='page-title'>Utility<small> Andrew Kofink - <a href='http://getbootstrap.com/css/', target='_blank'>Bootstrap</a></small></h1>
-
+<div class='container' id='main-content'>
   <div class='row'>
     <div class='col-md-3'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h3 class='panel-title'>Courses<small> Fall 2013</small></h3>
-        </div>
+      <%= render 'links' %>
 
-        <ul class='list-group'>
-          <a href='https://wolfware.ncsu.edu/', target='_blank' class='list-group-item'>My Courses - Wolfware</a>
-          <a href='http://courses.ncsu.edu/ece301/lec/001/', target='_blank' class='list-group-item'>ECE 301</a>
-          <a href='https://moodle1314-courses.wolfware.ncsu.edu/course/view.php?id=2872', target='_blank' class='list-group-item'>CSC 246</a>
-          <a href='https://moodle1314-courses.wolfware.ncsu.edu/pluginfile.php/422185/mod_resource/content/0/readings.pdf',
-            target='_blank' class='list-group-item'>CSC 246 Reading Schedule</a>
-          <a href='https://moodle1314-courses.wolfware.ncsu.edu/course/view.php?id=2799', target='_blank', class='list-group-item'>ECE 302</a>
-          <a href='https://moodle1314-courses.wolfware.ncsu.edu/pluginfile.php/361773/mod_resource/content/2/Lecture_HW_schedule.pdf',
-            target='_blank' class='list-group-item'>ECE 302 Lecture Schedule</a>
-          <a href='https://moodle1314-courses.wolfware.ncsu.edu/course/view.php?id=3235', target='_blank', class='list-group-item'>ECE 302 Lab</a>
-          <a href='http://www.csc.ncsu.edu/faculty/efg/517/f13/', target='_blank', class='list-group-item'>CSC 517</a>
-        </ul>
-      </div>
-
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h3
-            class='panel-title'>Periodic Table</h3>
-        </div>
-
-        <div
-          class='container'>
-          <%= image_tag 'periodic_table.png', width: '220px' %>
-        </div>
-      </div>
+      <%= render 'periodic_table' %>
     </div>
 
     <div id='tasks_partial'>
-      <%= render 'tasks/form' %>
-
       <%= render 'tasks/all', tasks: @dashboard.tasks %>
     </div>
 
     <div class='col-md-5'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h3 class='panel-title'>Laplace Transforms</h3>
-        </div>
-
-        <div class='container'>
-          <%= image_tag 'laplace_transforms.png' %>
-        </div>
-      </div>
+      <%= render 'laplace_transforms' %>
     </div>
   </div>
 </div>

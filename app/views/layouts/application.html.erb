@@ -8,6 +8,8 @@
 </head>
 <body <%= "class=dev_colored" if Rails.env.development? %>>
 
+<%= render 'shared/header' %>
+
 <%= yield %>
 
 </body>

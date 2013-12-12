@@ -6,9 +6,10 @@
       <h4 class='list-group-item-heading'>Login Name</h4>
       <%= @user.login %>
     </li>
+    <li class='list-group-item'>
+      <%= link_to edit_user_path(@user) do %>
+        <%= fa_icon 'edit' %> Edit
+      <% end %>
+    </li>
   </ul>
-
-  <%= link_to edit_user_path(@user) do %>
-    <%= fa_icon 'edit' %> Edit
-  <% end %>
 </div>

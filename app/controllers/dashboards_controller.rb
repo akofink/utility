@@ -1,5 +1,5 @@
-class DashboardController < ApplicationController
-  def index
+class DashboardsController < ApplicationController
+  def show
     @dashboard = Dashboard.new
   end
 

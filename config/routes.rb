@@ -1,5 +1,9 @@
 Utility::Application.routes.draw do
-  resources :dashboard, controller: :dashboard
+  resources :dashboards do
+    collection do
+      get :tasks
+    end
+  end
 
   resources :links
 
@@ -12,6 +16,8 @@ Utility::Application.routes.draw do
   resources :tasks, only: [ :update, :create, :destroy ]
 
   resources :users
+
+  get 'dashboard', to: 'dashboards#show'
 
   root to: 'user_sessions#new'
 end

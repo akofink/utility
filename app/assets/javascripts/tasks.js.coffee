@@ -72,7 +72,7 @@ $(document).on 'ready page:load', ->
 
   reloadTasks = ->
     $.ajax
-      url: 'dashboard/tasks',
+      url: 'dashboards/tasks',
       success: (data, status, xhr) ->
         $('#tasks_partial').html data
 
@@ -83,7 +83,6 @@ $(document).on 'ready page:load', ->
     saveTask taskDiv
 
   $(document).on "click", ".editable", (event) ->
-    console.log event
     if event.shiftKey
       event.preventDefault()
       element = $(this).closest('#task_due, #task_title, #task_body')

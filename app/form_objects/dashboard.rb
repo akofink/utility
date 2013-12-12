@@ -1,4 +1,4 @@
-class Dashboard
+class Dashboard < ActiveRecord::Base
   attr_accessor :tasks, :links
 
   def initialize

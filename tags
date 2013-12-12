@@ -11,6 +11,7 @@ ApplicationController	app/controllers/application_controller.rb	/^class Applicat
 ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
 CreateLinks	db/migrate/20131211144012_create_links.rb	/^class CreateLinks < ActiveRecord::Migration$/;"	c
 CreateTasks	db/migrate/20130830002600_create_tasks.rb	/^class CreateTasks < ActiveRecord::Migration$/;"	c
+CreateUsers	db/migrate/20131212081449_create_users.rb	/^class CreateUsers < ActiveRecord::Migration$/;"	c
 Dashboard	app/form_objects/dashboard.rb	/^class Dashboard$/;"	c
 DashboardController	app/controllers/dashboard_controller.rb	/^class DashboardController < ApplicationController$/;"	c
 DashboardControllerTest	test/controllers/dashboard_controller_test.rb	/^class DashboardControllerTest < ActionController::TestCase$/;"	c
@@ -18,23 +19,67 @@ DashboardHelper	app/helpers/dashboard_helper.rb	/^module DashboardHelper$/;"	m
 DashboardHelperTest	test/helpers/dashboard_helper_test.rb	/^class DashboardHelperTest < ActionView::TestCase$/;"	c
 Link	app/models/link.rb	/^class Link < ActiveRecord::Base$/;"	c
 LinkTest	test/models/link_test.rb	/^class LinkTest < ActiveSupport::TestCase$/;"	c
+LinksController	app/controllers/links_controller.rb	/^class LinksController < ApplicationController$/;"	c
+LinksControllerTest	test/controllers/links_controller_test.rb	/^class LinksControllerTest < ActionController::TestCase$/;"	c
+LinksHelper	app/helpers/links_helper.rb	/^module LinksHelper$/;"	m
+LinksHelperTest	test/helpers/links_helper_test.rb	/^class LinksHelperTest < ActionView::TestCase$/;"	c
+SessionsControllerTest	test/controllers/sessions_controller_test.rb	/^class SessionsControllerTest < ActionController::TestCase$/;"	c
+SessionsHelper	app/helpers/sessions_helper.rb	/^module SessionsHelper$/;"	m
+SessionsHelperTest	test/helpers/sessions_helper_test.rb	/^class SessionsHelperTest < ActionView::TestCase$/;"	c
 Task	app/models/task.rb	/^class Task < ActiveRecord::Base$/;"	c
 TaskTest	test/models/task_test.rb	/^class TaskTest < ActiveSupport::TestCase$/;"	c
 TasksController	app/controllers/tasks_controller.rb	/^class TasksController < ApplicationController$/;"	c
 TasksControllerTest	test/controllers/tasks_controller_test.rb	/^class TasksControllerTest < ActionController::TestCase$/;"	c
 TasksHelper	app/helpers/tasks_helper.rb	/^module TasksHelper$/;"	m
 TasksHelperTest	test/helpers/tasks_helper_test.rb	/^class TasksHelperTest < ActionView::TestCase$/;"	c
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+UserSession	app/form_objects/user_session.rb	/^class UserSession$/;"	c
+UserSessionErrors	app/form_objects/user_session.rb	/^class UserSessionErrors < ActiveModel::Errors$/;"	c
+UserSessionsController	app/controllers/user_sessions_controller.rb	/^class UserSessionsController < ApplicationController$/;"	c
+UserTest	test/models/user_test.rb	/^class UserTest < ActiveSupport::TestCase$/;"	c
+UsersController	app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	c
+UsersControllerTest	test/controllers/users_controller_test.rb	/^class UsersControllerTest < ActionController::TestCase$/;"	c
+UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
+UsersHelperTest	test/helpers/users_helper_test.rb	/^class UsersHelperTest < ActionView::TestCase$/;"	c
 Utility	config/application.rb	/^module Utility$/;"	m
 by_due_date	app/models/task.rb	/^  def self.by_due_date$/;"	F	class:Task
 calendar	app/controllers/dashboard_controller.rb	/^  def calendar$/;"	f	class:DashboardController
 change	db/migrate/20130830002600_create_tasks.rb	/^  def change$/;"	f	class:CreateTasks
 change	db/migrate/20130831151243_add_status_to_task.rb	/^  def change$/;"	f	class:AddStatusToTask
 change	db/migrate/20131211144012_create_links.rb	/^  def change$/;"	f	class:CreateLinks
+change	db/migrate/20131212081449_create_users.rb	/^  def change$/;"	f	class:CreateUsers
+create	app/controllers/links_controller.rb	/^  def create$/;"	f	class:LinksController
 create	app/controllers/tasks_controller.rb	/^  def create$/;"	f	class:TasksController
+create	app/controllers/user_sessions_controller.rb	/^  def create$/;"	f	class:UserSessionsController
+create	app/controllers/users_controller.rb	/^  def create$/;"	f	class:UsersController
+current_user	app/controllers/application_controller.rb	/^  def current_user$/;"	f	class:ApplicationController
+current_user=	app/controllers/application_controller.rb	/^  def current_user=(user)$/;"	f	class:ApplicationController
+destroy	app/controllers/links_controller.rb	/^  def destroy$/;"	f	class:LinksController
 destroy	app/controllers/tasks_controller.rb	/^  def destroy$/;"	f	class:TasksController
+destroy	app/controllers/user_sessions_controller.rb	/^  def destroy$/;"	f	class:UserSessionsController
+destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersController
+edit	app/controllers/links_controller.rb	/^  def edit$/;"	f	class:LinksController
+edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersController
 email	app/controllers/dashboard_controller.rb	/^  def email$/;"	f	class:DashboardController
+index	app/controllers/links_controller.rb	/^  def index$/;"	f	class:LinksController
+index	app/controllers/users_controller.rb	/^  def index$/;"	f	class:UsersController
 initialize	app/form_objects/dashboard.rb	/^  def initialize$/;"	f	class:Dashboard
+initialize	app/form_objects/user_session.rb	/^  def initialize(args = {})$/;"	f	class:UserSession
+links_params	app/controllers/links_controller.rb	/^  def links_params$/;"	f	class:LinksController
+new	app/controllers/links_controller.rb	/^  def new$/;"	f	class:LinksController
+new	app/controllers/user_sessions_controller.rb	/^  def new$/;"	f	class:UserSessionsController
+new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
+password	app/models/user.rb	/^  def password$/;"	f	class:User
+password=	app/models/user.rb	/^  def password=(new_password)$/;"	f	class:User
+redirect_back	app/controllers/application_controller.rb	/^  def redirect_back(default = :root)$/;"	f	class:ApplicationController
+save	app/form_objects/user_session.rb	/^  def save$/;"	f	class:UserSession
 show	app/controllers/dashboard_controller.rb	/^  def show$/;"	f	class:DashboardController
+show	app/controllers/links_controller.rb	/^  def show$/;"	f	class:LinksController
+show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController
 task_params	app/controllers/tasks_controller.rb	/^  def task_params$/;"	f	class:TasksController
 tasks	app/controllers/dashboard_controller.rb	/^  def tasks$/;"	f	class:DashboardController
+update	app/controllers/links_controller.rb	/^  def update$/;"	f	class:LinksController
 update	app/controllers/tasks_controller.rb	/^  def update$/;"	f	class:TasksController
+update	app/controllers/users_controller.rb	/^  def update$/;"	f	class:UsersController
+users_params	app/controllers/users_controller.rb	/^  def users_params$/;"	f	class:UsersController
+users_sessions_params	app/controllers/user_sessions_controller.rb	/^  def users_sessions_params$/;"	f	class:UserSessionsController

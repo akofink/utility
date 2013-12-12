@@ -11,8 +11,11 @@
 <body <%= "class=dev_colored" if Rails.env.development? %>>
 
 <%= render 'shared/header' %>
+<%= render 'shared/flash_messages' %>
 
-<%= yield %>
+<div class='container'>
+  <%= yield %>
+</div>
 
 </body>
 </html>

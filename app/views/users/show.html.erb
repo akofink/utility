@@ -1,0 +1,14 @@
+<h1>User Account</h1>
+
+<div class='col-md-5'>
+  <ul class='list-group'>
+    <li class='list-group-item'>
+      <h4 class='list-group-item-heading'>Login Name</h4>
+      <%= @user.login %>
+    </li>
+  </ul>
+
+  <%= link_to edit_user_path(@user) do %>
+    <%= fa_icon 'edit' %> Edit
+  <% end %>
+</div>

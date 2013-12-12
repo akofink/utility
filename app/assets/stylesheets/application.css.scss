@@ -19,3 +19,7 @@
 .dev_colored {
   background-color: pink;
 }
+
+.alert-error {
+  @extend .alert-danger
+}

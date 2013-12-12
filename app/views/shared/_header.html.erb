@@ -4,9 +4,31 @@
   </div>
 
   <ul class="nav navbar-nav navbar-right">
-    <li><%= link_to 'Dashboard', '/' %></li>
-    <li><%= link_to 'Email', 'https://mail.google.com/mail/u/1/?shva=1#inbox', target: '_blank' %></li>
-    <li><%= link_to 'Calendar', 'https://www.google.com/calendar/b/1/render?tab=mc', target: '_blank' %></li>
-    <li><%= link_to 'Bootstrap', 'http://getbootstrap.com/css', target: '_blank' %></li>
-  </ul>
+    <li>
+      <%= link_to '/' do %>
+        <%= fa_icon 'bar-chart-o' %>
+      <% end %>
+    </li>
+
+    <% if current_user %>
+      <li>
+        <%= link_to current_user do %>
+          <%= fa_icon 'gear' %>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to user_sessions_path, method: :delete do %>
+          <%= fa_icon 'sign-out' %>
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to new_user_session_path do %>
+          <%= fa_icon 'sign-in' %>
+        <% end %>
+      </li>
+    <% end %>
+  </li>
+</ul>
 </nav>

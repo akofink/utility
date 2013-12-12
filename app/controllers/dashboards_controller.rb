@@ -5,7 +5,7 @@ class DashboardsController < ApplicationController
 
   def tasks
     @dashboard = Dashboard.new
-    render partial: 'tasks/all', locals: { tasks: @dashboard.tasks }
+    render partial: 'tasks/all', id: -1, locals: { tasks: @dashboard.tasks }
   end
 
   private

@@ -2,6 +2,7 @@ Utility::Application.routes.draw do
   resources :dashboards, constraints: { id: /\d*/ } do
     collection do
       get :tasks
+      get 'show/*:id', action: :show
     end
   end
 

@@ -1,5 +1,5 @@
 Utility::Application.routes.draw do
-  resources :dashboards do
+  resources :dashboards, constraints: { id: /.+/ } do
     collection do
       get :tasks
     end

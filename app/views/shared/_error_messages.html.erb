@@ -1,0 +1,20 @@
+<% if model.errors.any? %>
+  <div class='alert alert-warning alert-dismissable' id="error_explanation">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>
+      <% if model.try :error_header %>
+        <%= "#{pluralize(model.errors.count, "error")}
+        #{model.error_header}" %>
+      <% else %>
+        <%= pluralize(model.errors.count, "error") %> prohibited this
+        <%= model.class.name.downcase %> from being saved:
+      <% end %>
+    </strong>
+
+    <ul>
+      <% model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

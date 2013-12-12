@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  def show
+  def index
     @dashboard = Dashboard.new
   end
 
@@ -8,9 +8,9 @@ class DashboardController < ApplicationController
     render partial: 'tasks/all', locals: { tasks: @dashboard.tasks }
   end
 
-  def email
-  end
+  private
 
-  def calendar
+  def action_allowed?
+    current_user
   end
 end

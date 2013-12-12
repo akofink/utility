@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new params[:user]
   end
 
   def edit
@@ -16,24 +16,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new users_params
-    if user.save
+    @user = User.new users_params
+    if @user.save
       flash[:success] = 'User account created'
-      redirect_to user
+      self.current_user = @user
+      redirect_to @user
     else
-      flash[:error] = "Unsuccessful: #{user.errors.full_messages.join('<br>')}"
-      redirect_to edit_user_path(user)
+      render :edit
     end
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update_attributes(users_params)
+    @user = User.find(params[:id])
+    if @user.update_attributes(users_params)
       flash[:success] = 'User account updated'
-      redirect_to user
+      redirect_to @user
     else
-      flash[:error] = "Unsuccessful: #{user.errors.full_messages.join('<br>')}"
-      redirect_to edit_user_path(user)
+      render :edit
     end
   end
 
@@ -43,7 +42,6 @@ class UsersController < ApplicationController
       flash[:success] = 'User account destroyed'
       redirect_to User
     else
-      flash[:error] = "Unsuccessful: #{user.errors.full_messages.join('<br>')}"
       redirect_back
     end
   end
@@ -53,5 +51,14 @@ class UsersController < ApplicationController
   def users_params
     params.require(:user).
       permit(:login, :password, :password_confirmation)
+  end
+
+  def action_allowed?
+    case params[:action]
+    when 'new', 'create', 'edit', 'update'
+      true
+    else
+      current_user
+    end
   end
 end

@@ -1,9 +1,11 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  # users.password_hash in the database is a :string
   include BCrypt
 
+  validates_uniqueness_of :login
+  validates_presence_of :login
+  validates :login, length: { minimum: 6 }
   validates_confirmation_of :password
 
   def password
@@ -16,6 +18,6 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    access_level > 10
+    access_level && access_level > 10
   end
 end

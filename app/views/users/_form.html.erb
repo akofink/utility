@@ -1,27 +1,27 @@
-<div class='col-md-8'>
-  <%= form_for user, class: 'form-horizontal' do |f| %>
-    <div class='form-group'>
-      <%= f.text_field :login,
-        placeholder: 'login name',
-        class: 'form-control' %>
-    </div>
+<%= render 'shared/error_messages', model: user %>
 
-    <div class='form-group'>
-      <%= f.password_field :password,
-        placeholder: 'password',
-        class: 'form-control' %>
-    </div>
+<%= form_for user, class: 'form-horizontal' do |f| %>
+  <div class='form-group'>
+    <%= f.text_field :login,
+      placeholder: 'login name',
+      class: 'form-control' %>
+  </div>
 
-    <div class='form-group'>
-      <%= f.password_field :password_confirmation,
-        placeholder: 'password_confirmation',
-        class: 'form-control' %>
-    </div>
+  <div class='form-group'>
+    <%= f.password_field :password,
+      placeholder: 'password',
+      class: 'form-control' %>
+  </div>
 
-    <%= f.submit class: 'btn' %>
-  <% end %>
+  <div class='form-group'>
+    <%= f.password_field :password_confirmation,
+      placeholder: 'password_confirmation',
+      class: 'form-control' %>
+  </div>
 
-  <br>
+  <%= f.submit class: 'btn' %>
+<% end %>
 
-  <%= link_back %>
-</div>
+<br>
+
+<%= link_back %>

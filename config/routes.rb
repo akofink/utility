@@ -1,11 +1,5 @@
 Utility::Application.routes.draw do
-  resource :dashboard, controller: :dashboard do
-    collection do
-      get :tasks
-      get :email
-      get :calendar
-    end
-  end
+  resources :dashboard, controller: :dashboard
 
   resources :links
 
@@ -19,5 +13,5 @@ Utility::Application.routes.draw do
 
   resources :users
 
-  root to: 'dashboard#show'
+  root to: 'user_sessions#new'
 end

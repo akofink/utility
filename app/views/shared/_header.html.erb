@@ -5,7 +5,7 @@
 
   <ul class="nav navbar-nav navbar-right">
     <li>
-      <%= link_to '/' do %>
+      <%= link_to dashboard_path do %>
         <%= fa_icon 'bar-chart-o' %>
       <% end %>
     </li>
@@ -18,7 +18,9 @@
       </li>
 
       <li>
-        <%= link_to user_sessions_path, method: :delete do %>
+        <%= link_to user_sessions_path,
+          method: :delete,
+          confirm: 'Log out?' do %>
           <%= fa_icon 'sign-out' %>
         <% end %>
       </li>

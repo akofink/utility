@@ -5,16 +5,20 @@ class UserSession
 
   def initialize(args = {})
     @user = User.find_by login: args[:login]
+    @errors ||= UserSessionErrors.new(self)
     @valid = @user.password == args[:password] if @user
   end
 
   def save
     unless @valid
-      @errors ||= UserSessionErrors.new(self)
       @errors.add :password, 'is invalid.'
     end
 
     @valid
+  end
+
+  def error_header
+    "prevented login:"
   end
 end
 

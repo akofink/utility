@@ -1,0 +1,28 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>
+      <%= link_to 'Links', Link %>
+      <%= link_to new_link_path, class: 'pull-right' do %>
+        <%= fa_icon 'plus' %>
+      <% end %>
+    </h3>
+  </div>
+
+  <ul class='list-group'>
+    <% links.each do |link| %>
+      <div class='list-group-item'>
+        <a href=<%= link.url %> target='_blank'>
+          <%= link.content %>
+        </a>
+        <span class='pull-right'>
+          <%= link_to edit_link_path(link) do %>
+            <%= fa_icon 'edit' %>
+          <% end %>
+          <%= link_to link, method: 'delete', confirm: 'Delete link?' do %>
+            <%= fa_icon 'times' %>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
+  </ul>
+</div>

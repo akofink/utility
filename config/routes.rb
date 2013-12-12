@@ -7,6 +7,8 @@ Utility::Application.routes.draw do
     end
   end
 
+  resources :links
+
   resources :tasks, only: [ :update, :create, :destroy ]
 
   root to: 'dashboard#show'

@@ -1,0 +1,19 @@
+<div class='container row'>
+  <div class='col-md-5'>
+    <%= form_for link, class: 'form-horizontal' do |f| %>
+      <div class='form-group'>
+        <%= f.text_field :content,
+          placeholder: 'Crazy Server URL',
+          class: 'form-control' %>
+      </div>
+
+      <div class='form-group'>
+        <%= f.text_field :url,
+          placeholder: 'https://324.21.222.12:3334',
+          class: 'form-control' %>
+      </div>
+
+      <%= f.submit class: 'btn' %>
+    <% end %>
+  </div>
+</div>

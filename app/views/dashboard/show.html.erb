@@ -1,7 +1,7 @@
 <div class='container' id='main-content'>
   <div class='row'>
     <div class='col-md-3'>
-      <%= render 'links' %>
+      <%= render 'links/all', links: @dashboard.links %>
 
       <%= render 'periodic_table' %>
     </div>

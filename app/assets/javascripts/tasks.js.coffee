@@ -68,7 +68,7 @@ $(document).on 'ready page:load', ->
         setupLinks()
 
   $(document).on "click", ".editable", (event) ->
-    unless $(this).find('input').length > 0
+    unless $(this).find('textarea').length > 0
       if event.shiftKey
         event.preventDefault()
 
@@ -77,10 +77,10 @@ $(document).on 'ready page:load', ->
         if element.length == 0
           element = $(this).closest('.task_due, .task_title')
           data = element
-        element.html "<input type='text' class='task-form-item form-control' value='" + data.html().trim() + "'>"
-        element.find("input").focus()
+        element.html "<textarea type='text' class='task-form-item form-control'>" + data.html().trim() + "</textarea>"
+        element.find("textarea").focus()
 
-  $(document).on "blur", ".editable input", (event) ->
+  $(document).on "blur", ".editable textarea", (event) ->
     element = $(this)
     taskDiv = element.closest('.task')
     text = element.val().trim()

@@ -22,12 +22,14 @@ group :test do
 end
 
 gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
+gem 'bcrypt-ruby'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'font-awesome-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'redcarpet'
+gem 'rmagick'
 gem 'sass-rails', '~> 4.0.0'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-gem 'font-awesome-rails'
-gem 'bcrypt-ruby'

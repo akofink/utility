@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    Task.find_by(id: params[:task][:id]).try :destroy
+    Task.find_by(id: params[:task][:id]).destroy
     render nothing: true
   end
 

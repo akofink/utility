@@ -2,51 +2,40 @@ $(document).on 'ready page:load', ->
   setupLinks = ->
     $('#tasks a').attr "target", "_blank"
 
-  taskDue = (taskDiv) ->
-    $(taskDiv).find("#task_due").html()
+  taskContent = (taskDiv, section) ->
+    element = $(taskDiv).find(".task_" + section)
+    if section == 'status'
+      return element.find('span').hasClass('glyphicon-ok')
+    if section == 'id'
+      return element.val()
 
-  updateDue = (taskDiv, due) ->
-    $(taskDiv).find('#task_due').val(due)
+    element.html().trim()
 
-  taskStatus = (taskDiv) ->
-    $(taskDiv).find("#task_status").find('span').hasClass('glyphicon-ok')
+  updateContent = (taskDiv, section, content) ->
+    if section == 'status'
+      $(taskDiv).
+        find('.task_status span').
+        toggleClass('glyphicon-ok', content)
+      $(taskDiv).
+        find('.task_status span').
+        toggleClass('glyphicon-minus', !content)
 
-  updateStatus = (taskDiv, due) ->
-    $(taskDiv).find('#task_status span').toggleClass('glyphicon-ok', due)
-    $(taskDiv).find('#task_status span').toggleClass('glyphicon-minus', !due)
-
-  taskTitle = (taskItem) ->
-    $(taskItem).find("#task_title").html().trim()
-
-  updateTitle = (taskDiv, title) ->
-    $(taskDiv).find('#task_title').val(title)
-
-  taskBody = (taskDiv) ->
-    $(taskDiv).find("#task_body").html().trim()
-
-  updateBody = (taskDiv, body) ->
-    $(taskDiv).find('#task_body').val(body)
-
-  taskId = (taskDiv) ->
-    $(taskDiv).find('#task_id').val()
-
-  updateId = (taskDiv, id) ->
-    $(taskDiv).find('#task_id').val(id)
+    $(taskDiv).select('.task_' + section).val(content)
 
   updateDiv = (taskDiv, task) ->
-    updateId taskDiv, task.id
-    updateDue taskDiv, task.due
-    updateStatus taskDiv, task.status
-    updateTitle taskDiv, task.title
-    updateBody taskDiv, task.body
+    updateContent taskDiv, 'id', task.id
+    updateContent taskDiv, 'due', task.due
+    updateContent taskDiv, 'status', task.status
+    updateContent taskDiv, 'title', task.title
+    updateContent taskDiv, 'body', task.body
 
   taskFromDiv = (taskDiv) ->
     {
-      id: taskId(taskDiv)
-      due: taskDue(taskDiv)
-      status: taskStatus(taskDiv)
-      title: taskTitle(taskDiv)
-      body: taskBody(taskDiv)
+      id: taskContent(taskDiv, 'id')
+      due: taskContent(taskDiv, 'due')
+      status: taskContent(taskDiv, 'status')
+      title: taskContent(taskDiv, 'title')
+      body: taskContent(taskDiv, 'body')
     }
 
   tasksInView = ->
@@ -54,6 +43,7 @@ $(document).on 'ready page:load', ->
 
   saveTask = (taskDiv) ->
     task = taskFromDiv taskDiv
+    console.log task
     $.ajax
       url: 'tasks/update',
       data: { task: task },
@@ -75,38 +65,40 @@ $(document).on 'ready page:load', ->
       url: 'dashboards/tasks',
       success: (data, status, xhr) ->
         $('#tasks_partial').html data
-
-
-  $(document).on "click", "#add-task", (event) ->
-    $("#tasks").append $("#new-task-form").html()
-    taskDiv = tasksInView().last()
-    saveTask taskDiv
+        setupLinks()
 
   $(document).on "click", ".editable", (event) ->
-    if event.shiftKey
-      event.preventDefault()
-      element = $(this).closest('#task_due, #task_title, #task_body')
-      element.toggleClass "editable", false
-      element.html "<input type='text' class='task-form-item form-control' value='" + $(this).html().trim() + "'>"
-      element.find("input").focus()
+    unless $(this).find('input').length > 0
+      if event.shiftKey
+        event.preventDefault()
 
-  $(document).on "blur", "input.task-form-item", (event) ->
-    $(this).closest('span').toggleClass "editable", true
+        element = $(this).find('.task_body')
+        if element.length == 0
+          element = $(this).closest('.task_due, .task_title')
+        element.html "<input type='text' class='task-form-item form-control' value='" + element.html().trim() + "'>"
+        element.find("input").focus()
+
+  $(document).on "blur", ".editable input", (event) ->
     taskDiv = $(this).closest('.task')
     text = $(this).val().trim()
     if text == ''
-      text = $(this).closest('span').attr 'id'
+      text = taskContent taskDiv, 'id'
     $(this).replaceWith text
     saveTask taskDiv
 
-  $(document).on "click", "#remove_task", (event) ->
+  $(document).on "click", ".add_task", (event) ->
+    $("#tasks").append $(".new-task-form").html()
+    saveTask tasksInView().last()
+
+
+  $(document).on "click", ".remove_task", (event) ->
     taskDiv = $(this).parent()
     taskDiv.remove()
     destroyTask taskDiv
 
-  $(document).on "click", "#task_status", (event) ->
+  $(document).on "click", ".task_status", (event) ->
     taskDiv = $(this).parent()
-    updateStatus taskDiv, !taskStatus(taskDiv)
+    updateContent taskDiv, 'status', !taskContent(taskDiv, 'status')
     saveTask taskDiv
 
   setupLinks()

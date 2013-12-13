@@ -13,11 +13,11 @@ AuthorizationHelper	app/helpers/authorization_helper.rb	/^module AuthorizationHe
 CreateLinks	db/migrate/20131211144012_create_links.rb	/^class CreateLinks < ActiveRecord::Migration$/;"	c
 CreateTasks	db/migrate/20130830002600_create_tasks.rb	/^class CreateTasks < ActiveRecord::Migration$/;"	c
 CreateUsers	db/migrate/20131212081449_create_users.rb	/^class CreateUsers < ActiveRecord::Migration$/;"	c
-Dashboard	app/form_objects/dashboard.rb	/^class Dashboard$/;"	c
-DashboardController	app/controllers/dashboard_controller.rb	/^class DashboardController < ApplicationController$/;"	c
+Dashboard	app/form_objects/dashboard.rb	/^class Dashboard < ActiveRecord::Base$/;"	c
 DashboardControllerTest	test/controllers/dashboard_controller_test.rb	/^class DashboardControllerTest < ActionController::TestCase$/;"	c
 DashboardHelper	app/helpers/dashboard_helper.rb	/^module DashboardHelper$/;"	m
 DashboardHelperTest	test/helpers/dashboard_helper_test.rb	/^class DashboardHelperTest < ActionView::TestCase$/;"	c
+DashboardsController	app/controllers/dashboards_controller.rb	/^class DashboardsController < ApplicationController$/;"	c
 Link	app/models/link.rb	/^class Link < ActiveRecord::Base$/;"	c
 LinkTest	test/models/link_test.rb	/^class LinkTest < ActiveSupport::TestCase$/;"	c
 LinksController	app/controllers/links_controller.rb	/^class LinksController < ApplicationController$/;"	c
@@ -43,18 +43,17 @@ UsersControllerTest	test/controllers/users_controller_test.rb	/^class UsersContr
 UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
 UsersHelperTest	test/helpers/users_helper_test.rb	/^class UsersHelperTest < ActionView::TestCase$/;"	c
 Utility	config/application.rb	/^module Utility$/;"	m
-action	app/helpers/authorization_helper.rb	/^  def action$/;"	f	class:AuthorizationHelper
-action_allowed?	app/controllers/dashboard_controller.rb	/^  def action_allowed?$/;"	f	class:DashboardController
+action_allowed?	app/controllers/dashboards_controller.rb	/^  def action_allowed?$/;"	f	class:DashboardsController
+action_allowed?	app/controllers/user_sessions_controller.rb	/^  def action_allowed?$/;"	f	class:UserSessionsController
+action_allowed?	app/controllers/users_controller.rb	/^  def action_allowed?$/;"	f	class:UsersController
 action_allowed?	app/helpers/authorization_helper.rb	/^  def action_allowed?$/;"	f	class:AuthorizationHelper
 admin?	app/models/user.rb	/^  def admin?$/;"	f	class:User
 authorize	app/helpers/authorization_helper.rb	/^  def authorize$/;"	f	class:AuthorizationHelper
 by_due_date	app/models/task.rb	/^  def self.by_due_date$/;"	F	class:Task
-calendar	app/controllers/dashboard_controller.rb	/^  def calendar$/;"	f	class:DashboardController
 change	db/migrate/20130830002600_create_tasks.rb	/^  def change$/;"	f	class:CreateTasks
 change	db/migrate/20130831151243_add_status_to_task.rb	/^  def change$/;"	f	class:AddStatusToTask
 change	db/migrate/20131211144012_create_links.rb	/^  def change$/;"	f	class:CreateLinks
 change	db/migrate/20131212081449_create_users.rb	/^  def change$/;"	f	class:CreateUsers
-controller	app/helpers/authorization_helper.rb	/^  def controller$/;"	f	class:AuthorizationHelper
 create	app/controllers/links_controller.rb	/^  def create$/;"	f	class:LinksController
 create	app/controllers/tasks_controller.rb	/^  def create$/;"	f	class:TasksController
 create	app/controllers/user_sessions_controller.rb	/^  def create$/;"	f	class:UserSessionsController
@@ -67,13 +66,14 @@ destroy	app/controllers/user_sessions_controller.rb	/^  def destroy$/;"	f	class:
 destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersController
 edit	app/controllers/links_controller.rb	/^  def edit$/;"	f	class:LinksController
 edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersController
-email	app/controllers/dashboard_controller.rb	/^  def email$/;"	f	class:DashboardController
+error_header	app/form_objects/user_session.rb	/^  def error_header$/;"	f	class:UserSession
 index	app/controllers/links_controller.rb	/^  def index$/;"	f	class:LinksController
 index	app/controllers/users_controller.rb	/^  def index$/;"	f	class:UsersController
 initialize	app/form_objects/dashboard.rb	/^  def initialize$/;"	f	class:Dashboard
 initialize	app/form_objects/user_session.rb	/^  def initialize(args = {})$/;"	f	class:UserSession
 link_back	app/helpers/application_helper.rb	/^  def link_back$/;"	f	class:ApplicationHelper
 links_params	app/controllers/links_controller.rb	/^  def links_params$/;"	f	class:LinksController
+md	app/helpers/application_helper.rb	/^  def md(text)$/;"	f	class:ApplicationHelper
 new	app/controllers/links_controller.rb	/^  def new$/;"	f	class:LinksController
 new	app/controllers/user_sessions_controller.rb	/^  def new$/;"	f	class:UserSessionsController
 new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
@@ -81,11 +81,11 @@ password	app/models/user.rb	/^  def password$/;"	f	class:User
 password=	app/models/user.rb	/^  def password=(new_password)$/;"	f	class:User
 redirect_back	app/controllers/application_controller.rb	/^  def redirect_back(default = :root)$/;"	f	class:ApplicationController
 save	app/form_objects/user_session.rb	/^  def save$/;"	f	class:UserSession
-show	app/controllers/dashboard_controller.rb	/^  def show$/;"	f	class:DashboardController
+show	app/controllers/dashboards_controller.rb	/^  def show$/;"	f	class:DashboardsController
 show	app/controllers/links_controller.rb	/^  def show$/;"	f	class:LinksController
 show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController
 task_params	app/controllers/tasks_controller.rb	/^  def task_params$/;"	f	class:TasksController
-tasks	app/controllers/dashboard_controller.rb	/^  def tasks$/;"	f	class:DashboardController
+tasks	app/controllers/dashboards_controller.rb	/^  def tasks$/;"	f	class:DashboardsController
 update	app/controllers/links_controller.rb	/^  def update$/;"	f	class:LinksController
 update	app/controllers/tasks_controller.rb	/^  def update$/;"	f	class:TasksController
 update	app/controllers/users_controller.rb	/^  def update$/;"	f	class:UsersController

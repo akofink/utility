@@ -1,0 +1,2 @@
+ready = ->
+  trigger: 'turbo:ready'

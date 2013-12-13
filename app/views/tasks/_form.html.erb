@@ -1,26 +1,28 @@
-<div class='hidden' id='new-task-form'>
+<div class='hidden new-task-form'>
   <div class='list-group-item task'>
-    <%= button_tag nil, class: 'btn btn-xs pull-right', id: 'remove-task' do %>
+    <%= button_tag nil, class: 'btn btn-xs pull-right remove_task' do %>
       <span class='glyphicon glyphicon-remove'></span>
     <% end %>
-    <%= button_tag nil, class: 'btn btn-xs pull-right', id: 'task_status' do %>
+    <%= button_tag nil, class: 'btn btn-xs pull-right task_status' do %>
       <span class='glyphicon glyphicon-minus'></span>
     <% end %>
-    <%= hidden_field :task, :id %>
+    <%= hidden_field :task, :id, { class: 'task_id' } %>
     <h4 class='list-group-item-heading'>
-      <span class='editable' id='task_due'>
+      <span class='editable task_due'>
         task_due
       </span>
       -
-      <span class='editable' id='task_title'>
+      <span class='editable task_title'>
         task_title
       </span>
     </h4>
     <p class='list-group-item-text'>
-      <span class='editable' id='task_body'>
-        task_body
+      <span>
+        <%= fa_icon 'edit' %>
+        <span class='task_body editable'>
+          task_body
+        </span>
       </span>
     </p>
   </div>
 </div>
-

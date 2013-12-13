@@ -5,8 +5,10 @@
 
   <ul class="nav navbar-nav navbar-right">
     <li>
-      <%= link_to dashboard_path(current_user.id) if current_user do %>
-        <%= fa_icon 'bar-chart-o' %>
+      <% if current_user %>
+        <%= link_to dashboard_path(current_user.id) do %>
+          <%= fa_icon 'bar-chart-o' %>
+        <% end %>
       <% end %>
     </li>
 

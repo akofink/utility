@@ -29,10 +29,14 @@
               <%= task.title.html_safe || 'task_title' %>
             </span>
           </h4>
-          <span class='list-group-item-text editable'>
-            <%= fa_icon 'edit' %>
-            <span class='task_body'>
-              <%= md(task.body.html_safe || 'task_body') %>
+          <span class='list-group-item-text'>
+            <span class='editable'>
+              <span class='task_body hidden'>
+                <%= task.body.html_safe || 'task_body' %>
+              </span>
+              <span class='task_body_md'>
+                <%= md(task.body.html_safe || 'task_body') %>
+              </span>
             </span>
           </span>
         </div>

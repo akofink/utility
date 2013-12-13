@@ -72,18 +72,28 @@ $(document).on 'ready page:load', ->
       if event.shiftKey
         event.preventDefault()
 
-        element = $(this).find('.task_body')
+        element = $(this).find('.task_body_md')
+        data = $(this).find('.task_body')
         if element.length == 0
           element = $(this).closest('.task_due, .task_title')
-        element.html "<input type='text' class='task-form-item form-control' value='" + element.html().trim() + "'>"
+          data = element
+        element.html "<input type='text' class='task-form-item form-control' value='" + data.html().trim() + "'>"
         element.find("input").focus()
 
   $(document).on "blur", ".editable input", (event) ->
-    taskDiv = $(this).closest('.task')
-    text = $(this).val().trim()
+    element = $(this)
+    taskDiv = element.closest('.task')
+    text = element.val().trim()
+
     if text == ''
       text = taskContent taskDiv, 'id'
+
+    if element.parents('.task_body_md').length > 0
+      element = taskDiv.find('.task_body')
+      element.html text
+
     $(this).replaceWith text
+
     saveTask taskDiv
 
   $(document).on "click", ".add_task", (event) ->

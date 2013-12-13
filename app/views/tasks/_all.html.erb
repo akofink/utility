@@ -20,6 +20,7 @@
             <span class='glyphicon <%= task.status ? 'glyphicon-ok' : 'glyphicon-minus' %>'></span>
           <% end %>
           <%= hidden_field :task, :id, { value: task.id, class: 'task_id' } %>
+          <%= hidden_field :task, :user_id, { value: current_user.id, class: 'task_user_id' } %>
           <h4 class='list-group-item-heading'>
             <span class='editable task_due'>
               <%= task.due.try(:strftime, "%Y-%m-%d %a") || 'task_due' %>

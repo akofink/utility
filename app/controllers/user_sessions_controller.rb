@@ -31,7 +31,7 @@ class UserSessionsController < ApplicationController
   def action_allowed?
     case params[:action]
     when 'new'
-      redirect_to '/dashboard' if current_user
+      redirect_to dashboard_path(current_user.id) if current_user
       true
     else
       true

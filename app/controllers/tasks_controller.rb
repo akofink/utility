@@ -12,13 +12,23 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    Task.find_by(id: params[:task][:id]).destroy
-    render nothing: true
+    @task = Task.find_by(id: params[:task][:id])
+
+    if @task.destroy
+      render nothing: true
+    end
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:id, :due, :status, :title, :body)
+    params.require(:task).permit(:id, :user_id, :due, :status, :title, :body)
+  end
+
+  def action_allowed?
+    case params[:action]
+    when 'create', 'update', 'destroy'
+      current_user.id == task_params[:user_id].to_i
+    end
   end
 end

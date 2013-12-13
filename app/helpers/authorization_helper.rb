@@ -1,7 +1,7 @@
 module AuthorizationHelper
   def authorize
-    unless action_allowed?
-      flash[:warning] = "#{params[:controller]}##{params[:action]} Denied"
+    unless action_allowed? || (current_user && current_user.admin?)
+      flash[:warning] = "#{params[:controller]}##{params[:action]} denied for those parameters"
       redirect_back
     end
   end

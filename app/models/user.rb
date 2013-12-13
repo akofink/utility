@@ -3,6 +3,9 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
 
+  has_many :tasks
+  has_many :links
+
   validates_uniqueness_of :login
   validates_presence_of :login
   validates :login, length: { minimum: 6 }

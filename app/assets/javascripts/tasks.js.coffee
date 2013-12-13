@@ -6,7 +6,7 @@ $(document).on 'ready page:load', ->
     element = $(taskDiv).find(".task_" + section)
     if section == 'status'
       return element.find('span').hasClass('glyphicon-ok')
-    if section == 'id'
+    if section == 'id' || section == 'user_id'
       return element.val()
 
     element.html().trim()
@@ -24,6 +24,7 @@ $(document).on 'ready page:load', ->
 
   updateDiv = (taskDiv, task) ->
     updateContent taskDiv, 'id', task.id
+    updateContent taskDiv, 'user_id', task.user_id
     updateContent taskDiv, 'due', task.due
     updateContent taskDiv, 'status', task.status
     updateContent taskDiv, 'title', task.title
@@ -32,6 +33,7 @@ $(document).on 'ready page:load', ->
   taskFromDiv = (taskDiv) ->
     {
       id: taskContent(taskDiv, 'id')
+      user_id: taskContent(taskDiv, 'user_id')
       due: taskContent(taskDiv, 'due')
       status: taskContent(taskDiv, 'status')
       title: taskContent(taskDiv, 'title')
@@ -45,7 +47,7 @@ $(document).on 'ready page:load', ->
     task = taskFromDiv taskDiv
     console.log task
     $.ajax
-      url: 'tasks/update',
+      url: '/tasks/update',
       data: { task: task },
       type: 'PUT',
       success: (data, status, xhr) ->
@@ -56,13 +58,13 @@ $(document).on 'ready page:load', ->
   destroyTask = (taskDiv) ->
     task = taskFromDiv taskDiv
     $.ajax
-      url: 'tasks/destroy',
+      url: '/tasks/destroy',
       data: { task: task },
       type: 'DELETE'
 
   reloadTasks = ->
     $.ajax
-      url: 'dashboards/tasks',
+      url: 'tasks',
       success: (data, status, xhr) ->
         $('#tasks_partial').html data
         setupLinks()
@@ -99,7 +101,6 @@ $(document).on 'ready page:load', ->
   $(document).on "click", ".add_task", (event) ->
     $("#tasks").append $(".new-task-form").html()
     saveTask tasksInView().last()
-
 
   $(document).on "click", ".remove_task", (event) ->
     taskDiv = $(this).parent()

@@ -1,6 +1,8 @@
 <div class='container row'>
   <div class='col-md-5'>
+    <%= render 'shared/error_messages', model: link %>
     <%= form_for link, class: 'form-horizontal' do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
       <div class='form-group'>
         <%= f.text_field :content,
           placeholder: 'Crazy Server URL',

@@ -59,7 +59,7 @@ class LinksController < ApplicationController
     case params[:action]
     when 'index'
       current_user.id == params[:user_id].to_i
-    when 'create', 'update', 'destroy'
+    when 'create', 'update'
       current_user.id == link_params[:user_id].to_i
     when 'destroy', 'edit'
       Link.find(params[:id]).user == current_user

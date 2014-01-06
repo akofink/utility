@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_presence_of :login
   validates :login, length: { minimum: 6 }
   validates_confirmation_of :password
+  validates_presence_of :password
 
   def password
     @password ||= Password.new(password_hash)

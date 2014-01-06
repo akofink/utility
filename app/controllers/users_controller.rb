@@ -49,6 +49,11 @@ class UsersController < ApplicationController
   private
 
   def users_params
+    if params[:password].blank?
+      params[:password] = nil
+      params[:password_confirmation] = nil
+    end
+
     params.require(:user).
       permit(:login, :background_color, :password, :password_confirmation)
   end

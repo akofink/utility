@@ -5,9 +5,17 @@
 
   <ul class="nav navbar-nav navbar-right">
     <li>
+      <% if current_user.try :admin? %>
+        <%= link_to User do %>
+          <%= fa_icon 'users', title: 'All Users' %>
+        <% end %>
+      <% end %>
+    </li>
+
+    <li>
       <% if current_user %>
         <%= link_to dashboard_path(current_user.id) do %>
-          <%= fa_icon 'bar-chart-o' %>
+          <%= fa_icon 'bar-chart-o', title: 'Dashboard' %>
         <% end %>
       <% end %>
     </li>
@@ -15,7 +23,7 @@
     <% if current_user %>
       <li>
         <%= link_to current_user do %>
-          <%= fa_icon 'gear' %>
+          <%= fa_icon 'gear', title: 'Settings' %>
         <% end %>
       </li>
 
@@ -23,7 +31,7 @@
         <%= link_to user_sessions_path,
           method: :delete,
           confirm: 'Log out?' do %>
-          <%= fa_icon 'sign-out' %>
+          <%= fa_icon 'sign-out', title: 'Sign Out' %>
         <% end %>
       </li>
     <% else %>

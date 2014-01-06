@@ -55,6 +55,8 @@ class UsersController < ApplicationController
 
   def action_allowed?
     case params[:action]
+    when 'index'
+      current_user.admin?
     when 'new', 'create', 'edit', 'update'
       true
     else

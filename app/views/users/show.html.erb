@@ -6,6 +6,15 @@
       <h4 class='list-group-item-heading'>Login Name</h4>
       <%= @user.login %>
     </li>
+
+    <li class='list-group-item'>
+      <h4 class='list-group-item-heading'>Background Color</h4>
+      <%= color_field :user, :background_color,
+        placeholder: 'background color',
+        disabled: true,
+        class: 'form-control' %>
+    </li>
+
     <li class='list-group-item'>
       <%= link_to edit_user_path(@user) do %>
         <%= fa_icon 'edit' %> Edit

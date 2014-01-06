@@ -8,7 +8,7 @@
     "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body <%= "class=dev_colored" if Rails.env.development? %>>
+<body <%= "style='background-color: #{current_user.background_color}'".html_safe if current_user %>>
 
 <%= render 'shared/header' %>
 <%= render 'shared/flash_messages' %>

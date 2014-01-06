@@ -1,4 +1,4 @@
-<nav class='navbar navbar-default' role='navigation'>
+<nav class='navbar navbar-default <%= "dev_colored" if Rails.env.development? %>' role='navigation'>
   <div class='page-title navbar-header'>
     <%= link_to 'Utility', '/', class: 'navbar-brand' %>
   </div>

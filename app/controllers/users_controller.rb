@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
   def users_params
     params.require(:user).
-      permit(:login, :password, :password_confirmation)
+      permit(:login, :background_color, :password, :password_confirmation)
   end
 
   def action_allowed?

@@ -11,7 +11,7 @@ class LinksController < ApplicationController
     @link = Link.new link_params
     if @link.save
       flash[:success] = 'Link created'
-      redirect_to user_links_path current_user
+      redirect_to :root
     else
       redirect_back
     end
@@ -21,7 +21,7 @@ class LinksController < ApplicationController
     @link = Link.find params[:id]
     if @link.update_attributes link_params
       flash[:success] = 'Link updated'
-      redirect_to user_links_path current_user
+      redirect_to :root
     else
       render :edit
     end

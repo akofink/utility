@@ -1,0 +1,36 @@
+@media screen and (max-device-width: 480px) {
+  i {
+    font-size: 128px;
+  }
+
+  .panel-heading {
+    height: 128px;
+    font-size: 72px;
+    a {
+      font-size: 72px;
+    }
+  }
+
+  button {
+    span.glyphicon {
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  h1 {
+    font-size: 72px;
+  }
+
+  h3 {
+    font-size: 72px;
+  }
+
+  .page-title {
+    height: 72px;
+  }
+
+  body {
+    font-size: 72px;
+  }
+}

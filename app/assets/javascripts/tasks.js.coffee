@@ -5,7 +5,7 @@ $(document).on 'ready page:load', ->
   taskContent = (taskDiv, section) ->
     element = $(taskDiv).find(".task_" + section)
     if section == 'status'
-      return element.find('span').hasClass('glyphicon-ok')
+      return element.find('i').hasClass('fa-check')
     if section == 'id' || section == 'user_id'
       return element.val()
 
@@ -14,11 +14,11 @@ $(document).on 'ready page:load', ->
   updateContent = (taskDiv, section, content) ->
     if section == 'status'
       $(taskDiv).
-        find('.task_status span').
-        toggleClass('glyphicon-ok', content)
+        find('.task_status i').
+        toggleClass('fa-check', content)
       $(taskDiv).
-        find('.task_status span').
-        toggleClass('glyphicon-minus', !content)
+        find('.task_status i').
+        toggleClass('fa-minus', !content)
 
     $(taskDiv).select('.task_' + section).val(content)
 

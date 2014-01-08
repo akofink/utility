@@ -4,9 +4,9 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h3 class='panel-title'>Tasks <small>use shift-click to edit</small>
-        <button type='button' class='btn btn-xs pull-right add_task'>
-          <span class="glyphicon glyphicon-plus"></span>
-        </button>
+        <span class='pull-right add_task'>
+          <%= fa_icon 'plus' %>
+        </span>
       </h3>
     </div>
 
@@ -14,10 +14,10 @@
       <% tasks.each do |task| %>
         <div class='list-group-item task'>
           <%= button_tag nil, class: 'btn btn-xs pull-right remove_task' do %>
-            <span class='glyphicon glyphicon-remove'></span>
+            <%= fa_icon 'times' %>
           <% end %>
           <%= button_tag nil, class: 'btn btn-xs pull-right task_status' do %>
-            <span class='glyphicon <%= task.status ? 'glyphicon-ok' : 'glyphicon-minus' %>'></span>
+            <%= fa_icon task.status ? 'check' : 'minus' %>
           <% end %>
           <%= hidden_field :task, :id, { value: task.id, class: 'task_id' } %>
           <%= hidden_field :task, :user_id, { value: current_user.id, class: 'task_user_id' } %>

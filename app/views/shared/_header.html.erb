@@ -14,20 +14,22 @@
           <% end %>
         </li>
 
-        <% if params[:auto_refresh] %>
-          <%= javascript_tag "document.auto_refresh()" %>
-          <li class='active'>
-            <%= link_to dashboard_path(current_user.id) do %>
-              <%= fa_icon 'refresh spin', title: 'Disable Auto-Refresh', class: 'active' %>
-            <% end %>
-          </li>
-        <% else %>
-          <%= javascript_tag "document.disable_auto_refresh = true" %>
-          <li>
-            <%= link_to '?auto_refresh=true' do %>
-              <%= fa_icon 'refresh', title: 'Enable Auto-Refresh' %>
-            <% end %>
-          </li>
+        <% if current_user && params[:controller] == 'dashboards' %>
+          <% if params[:auto_refresh] %>
+            <%= javascript_tag "document.auto_refresh()" %>
+            <li class='active'>
+              <%= link_to dashboard_path(current_user.id) do %>
+                <%= fa_icon 'refresh spin', title: 'Disable Auto-Refresh', class: 'active' %>
+              <% end %>
+            </li>
+          <% else %>
+            <%= javascript_tag "document.disable_auto_refresh = true" %>
+            <li>
+              <%= link_to '?auto_refresh=true' do %>
+                <%= fa_icon 'refresh', title: 'Enable Auto-Refresh' %>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
 
         <li>

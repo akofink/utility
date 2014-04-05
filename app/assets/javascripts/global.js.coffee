@@ -1,2 +1,2 @@
-ready = ->
-  trigger: 'turbo:ready'
+$(document).on 'turbo:ready', ->
+  #coffeescript here

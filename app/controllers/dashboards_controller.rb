@@ -19,7 +19,7 @@ class DashboardsController < ApplicationController
     when 'tasks'
       true
     else
-      current_user.id == params[:id].to_i
+      current_user && current_user.id == params[:id].to_i
     end
   end
 end

@@ -1,46 +1,66 @@
 <nav class='navbar navbar-default <%= "dev_colored" if Rails.env.development? %>' role='navigation'>
-  <div class='page-title navbar-header'>
-    <%= link_to 'Utility', '/', class: 'navbar-brand' %>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <%= link_to 'Utility', '/', class: 'navbar-brand' %>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if current_user.try :admin? %>
+            <%= link_to User do %>
+              <%= fa_icon 'users', title: 'All Users' %>
+            <% end %>
+          <% end %>
+        </li>
+
+        <% if params[:auto_refresh] %>
+          <%= javascript_tag "document.auto_refresh()" %>
+          <li class='active'>
+            <%= link_to dashboard_path(current_user.id) do %>
+              <%= fa_icon 'refresh spin', title: 'Disable Auto-Refresh', class: 'active' %>
+            <% end %>
+          </li>
+        <% else %>
+          <%= javascript_tag "document.disable_auto_refresh = true" %>
+          <li>
+            <%= link_to '?auto_refresh=true' do %>
+              <%= fa_icon 'refresh', title: 'Enable Auto-Refresh' %>
+            <% end %>
+          </li>
+        <% end %>
+
+        <li>
+          <% if current_user %>
+            <%= link_to dashboard_path(current_user.id) do %>
+              <%= fa_icon 'bar-chart-o', title: 'Dashboard' %>
+            <% end %>
+          <% end %>
+        </li>
+
+        <% if current_user %>
+          <li>
+            <%= link_to current_user do %>
+              <%= fa_icon 'gear', title: 'Settings' %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to user_sessions_path,
+              method: :delete,
+              confirm: 'Log out?' do %>
+              <%= fa_icon 'sign-out', title: 'Sign Out' %>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <%= fa_icon 'sign-in' %>
+            <% end %>
+          </li>
+        <% end %>
+      </li>
+    </ul>
   </div>
-
-  <ul class="nav navbar-nav navbar-right">
-    <li>
-      <% if current_user.try :admin? %>
-        <%= link_to User do %>
-          <%= fa_icon 'users', title: 'All Users' %>
-        <% end %>
-      <% end %>
-    </li>
-
-    <li>
-      <% if current_user %>
-        <%= link_to dashboard_path(current_user.id) do %>
-          <%= fa_icon 'bar-chart-o', title: 'Dashboard' %>
-        <% end %>
-      <% end %>
-    </li>
-
-    <% if current_user %>
-      <li>
-        <%= link_to current_user do %>
-          <%= fa_icon 'gear', title: 'Settings' %>
-        <% end %>
-      </li>
-
-      <li>
-        <%= link_to user_sessions_path,
-          method: :delete,
-          confirm: 'Log out?' do %>
-          <%= fa_icon 'sign-out', title: 'Sign Out' %>
-        <% end %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to new_user_session_path do %>
-          <%= fa_icon 'sign-in' %>
-        <% end %>
-      </li>
-    <% end %>
-  </li>
-</ul>
+</div>
 </nav>

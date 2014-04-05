@@ -30,6 +30,8 @@
               <% end %>
             </li>
           <% end %>
+        <% else %>
+          <%= javascript_tag "document.disable_auto_refresh = true" %>
         <% end %>
 
         <li>
